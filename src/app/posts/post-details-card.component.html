@@ -1,4 +1,4 @@
-<div class="card">
+<!--<div class="card">
   <div class="card-header">
     <h1 class="card-title text-xs-center text-uppercase text-justify">
       {{post.title}}
@@ -14,3 +14,17 @@
     back to <a [routerLink]="['','posts']">{{'post-list'}}</a>
   </div>
 </div>
+-->
+
+<md-card>
+  <md-card-header>
+    <md-card-title><h3>{{post.title}}</h3></md-card-title>
+    <md-card-subtitle>{{post.createdAt|date:'short'}}</md-card-subtitle>
+  </md-card-header>
+  <md-content>
+    <p class="card-text">{{post.content}}</p>
+  </md-content>
+  <md-card-actions>
+    back to <a [routerLink]="['','posts']">{{'post-list'}}</a>
+  </md-card-actions>
+</md-card>
