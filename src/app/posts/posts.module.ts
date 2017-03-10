@@ -12,13 +12,11 @@ import { PostDetailsCardComponent } from './post-details-card.component';
 import { CommentListComponent } from './comment-list.component';
 import { CommentListItemComponent } from './comment-list-item.component';
 import { CommentFormComponent } from './comment-form.component';
+import { SharedModule } from '../shared/';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    // CoreModule,
+    SharedModule,
     PostsRoutingModule
   ],
   declarations: [

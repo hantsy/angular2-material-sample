@@ -7,9 +7,6 @@ import { SharedModule } from '../shared';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     SigninRoutingModule,
     SharedModule
   ],

@@ -1,35 +1,26 @@
-<div class="card">
-  <div class="card-block bg-faded">
-    <div class="row">
-      <div class="col-md-9">
-        <form class="form-inline">
-          <div class="form-group" (ngSubmit)="search()">
-            <input type="text" name="q" class="form-control" [(ngModel)]="q" />
-          </div>
-          <button type="submit" class="btn btn-outline-info">{{'search'}}</button>
-          <!--<button type="button" class="btn btn-outline-info" (click)="clearTerm()">{{'clear'}}</button>-->
-        </form>
-      </div>
-      <div class="col-md-3">
-        <span class="pull-md-right">
-          <a class="btn btn-success" [routerLink]="['/posts', 'new']">new-post</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+<md-toolbar>
+  <form class="form-inline" (ngSubmit)="search()">
+    <md-input-container class="form-group">
+      <input mdInput type="text" name="q" [(ngModel)]="q" />
+    </md-input-container>
+    <button md-button type="submit" class="btn btn-outline-info">{{'search'}}</button>
+    <!--<button type="button" class="btn btn-outline-info" (click)="clearTerm()">{{'clear'}}</button>-->
+  </form>
+  <span class="example-spacer"></span>
+  <a md-button [routerLink]="['/posts', 'new']">NEW POST</a>
+</md-toolbar>
 
-<div class="row">
-  <div class="col-md-6" *ngFor="let post of posts ">
-    <div class="card card-block">
-      <h4 class="card-title">{{post.title}}</h4>
-      <h6 class="card-subtitle text-muted">{{post.createdAt|date:'short'}}</h6>
-      <p class="card-text">{{post.content}}</p>
-      <div class="text-md-right">
-        <a [routerLink]="['/posts', 'edit', post.id]">edit</a>
-        <a [routerLink]="['/posts', 'view', post.id]">view</a>
-      </div>
-    </div>
-  </div>
-</div>
 
+<md-card *ngFor="let post of posts ">
+  <md-card-header>
+    <md-card-title><h3>{{post.title}}</h3></md-card-title>
+    <md-card-subtitle>{{post.createdAt|date:'short'}}</md-card-subtitle>
+  </md-card-header>
+  <md-content>
+    <p class="card-text">{{post.content}}</p>
+  </md-content>
+  <md-card-actions>
+    <a md-button [routerLink]="['/posts', 'edit', post.id]">edit</a>
+    <a md-button [routerLink]="['/posts', 'view', post.id]">view</a>
+  </md-card-actions>
+</md-card>
