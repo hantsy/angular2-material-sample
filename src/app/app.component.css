@@ -1,0 +1,11 @@
+md-sidenav {
+  width: 300px
+}
+
+.example-spacer{
+  flex: 1 1 auto;
+}
+
+.body-margin {
+    margin: 50px;
+}

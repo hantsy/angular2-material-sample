@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -16,6 +16,7 @@ import { AboutModule} from './about/about.module';
 
 // required for md-slide-toggle, md-slider, mdTooltip
 import 'hammerjs';
+import { ProfileModule } from './profile/profile.module';
 
 
 @NgModule({
@@ -28,14 +29,15 @@ import 'hammerjs';
     HttpModule,
 
     //3rd party modules
-    MaterialModule,
+    //MaterialModule.forRoot(),
 
     //app modules
     CoreModule,
     SharedModule,
     AppRoutingModule,
     HomeModule,
-    AboutModule
+    AboutModule,
+    ProfileModule
   ],
   providers: [{ provide: APP_CONFIG, useValue: DEFAULT_APP_CONFIG }],
   bootstrap: [AppComponent]

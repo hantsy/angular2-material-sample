@@ -1,10 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~https://fonts.googleapis.com/icon?family=Roboto';
 
-.page {
-  margin-top: 80px;
-  min-height: 600px;
+body {
+    font-family: Roboto;
+    margin: 0px;
 }
 
-.page-header {
-  margin: 40px 0;
-}

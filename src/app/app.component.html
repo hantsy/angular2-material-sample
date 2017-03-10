@@ -1,8 +1,44 @@
-<app-navbar></app-navbar>
-<div class="page">
-  <div class="container">
+<md-sidenav-container fullscreen>
+
+  <md-sidenav #sidenav mode="side">
+    <md-nav-list>
+      <a md-list-item (click)="sidenav.close()" routerLink="/">
+        HOME
+      </a>
+      <a md-list-item (click)="sidenav.close()" routerLink="/profile">
+        PROFILE
+      </a>
+      <hr>
+
+      <a md-list-item (click)="sidenav.close()">
+        CLOSE
+      </a>
+    </md-nav-list>
+
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <button md-icon-button (click)="sidenav.toggle()">
+        <md-icon>
+            menu
+        </md-icon>
+    </button>
+    <button md-button routerLinkActive="active" routerLink="/posts/home">POSTS
+        </button>
+    <button md-button routerLinkActive="active" routerLink="/posts/new">
+         <i class="material-icons">add_circle_outline</i> NEW POST
+        </button>
+    <span class="example-spacer"></span>
+    <span [appShowAuthed]="false">
+          <button md-button routerLinkActive="active" routerLink="/signin">SIGN IN
+          </button>
+          <button md-button routerLinkActive="active" routerLink="/signup">SIGN UP
+          </button>
+        </span>
+    <span [appShowAuthed]="true">
+          <button md-button (click)="logout()">LOGOUT</button>
+        </span>
+  </md-toolbar>
+  <div class="body-margin">
     <router-outlet></router-outlet>
   </div>
-</div>
-<app-footer></app-footer>
-
+</md-sidenav-container>
