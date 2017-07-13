@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { SigninComponent } from './auth/signin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'signin', loadChildren: 'app/signin/signin.module#SigninModule' },
-  { path: 'signup', loadChildren: 'app/signup/signup.module#SignupModule' },
-  { path: 'posts', loadChildren: 'app/posts/posts.module#PostsModule' },
-  { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule' },
+  { path: 'posts', loadChildren: './posts/posts.module#PostsModule' },
+  { path: 'users', loadChildren: './users/users.module#UsersModule' },
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule' }
  // { path: '**', component:PageNotFoundComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [ RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}

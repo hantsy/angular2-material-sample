@@ -1,8 +1,14 @@
-@import '~@angular/material/core/theming/all-theme';
+@import '~@angular/material/theming';
 // Plus imports for other components in your app.
+@import '~@covalent/core/theming/all-theme';
 
-// Include the base styles for Angular Material core. We include this here so that you only
+// (optional) Additional themes
+@import '~@covalent/markdown/markdown-theme';
+@import '~@covalent/highlight/highlight-theme';
+
+// Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
 @include mat-core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -22,12 +28,25 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // that you are using.
 @include angular-material-theme($candy-app-theme);
 
+@include covalent-theme($candy-app-theme);
+// (optional) Additional themes
+@include covalent-markdown-theme($candy-app-theme);
+@include covalent-highlight-theme();
+
+// Include the theme styles for only specified components.
+// @include mat-core-theme($candy-app-theme);
+// @include mat-button-theme($candy-app-theme);
+// @include mat-checkbox-theme($candy-app-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .unicorn-dark-theme {
-  $dark-primary: mat-palette($mat-blue-grey);
-  $dark-accent:  mat-palette($mat-amber, A200, A100, A400);
-  $dark-warn:    mat-palette($mat-deep-orange);
-
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
   @include angular-material-theme($dark-theme);
 }

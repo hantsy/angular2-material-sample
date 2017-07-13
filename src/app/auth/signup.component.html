@@ -1,0 +1,56 @@
+<form [formGroup]="signupForm" (ngSubmit)="signup()">
+  <div layout="row">
+    <md-input-container flex>
+      <!-- <span mdPrefix><md-icon>person</md-icon></span> -->
+      <input mdInput [formControl]="username"
+        placeholder="Username"
+        type="text"
+        maxlength="30"
+        name="username"
+        required>
+
+      <md-error align="start" *ngIf="username.hasError('required')">
+        Username is <strong>required</strong>
+      </md-error>
+      <!-- <md-hint align="end">{{userElement.value.length}} / 30</md-hint> -->
+    </md-input-container>
+  </div>
+  <div layout="row">
+    <md-input-container flex>
+      <!-- <span mdPrefix><md-icon>person</md-icon></span> -->
+      <input mdInput  [formControl]="email"
+        placeholder="Email"
+        type="email"
+        maxlength="30"
+        name="email"
+        required>
+
+      <md-error align="start" *ngIf="email.hasError('required')">
+        Email is <strong>required</strong>
+      </md-error>
+      <md-error align="start" *ngIf="email.hasError('pattern')">
+        Email is <strong>invalid</strong>
+      </md-error>
+      <!-- <md-hint align="end">{{userElement.value.length}} / 30</md-hint> -->
+    </md-input-container>
+  </div>
+  <div layout="row">
+    <md-input-container flex>
+      <!-- <span mdPrefix><md-icon>lock</md-icon></span> -->
+      <input mdInput  [formControl]="password"
+        placeholder="Password"
+        type="password"
+        name="password"
+        required>
+      <md-error align="start" *ngIf="password.hasError('required')">
+        Password is <strong>required</strong>
+      </md-error>
+      <!-- <md-hint align="end">Something hard to guess</md-hint> -->
+    </md-input-container>
+  </div>
+  <div layout="row" layout-align="start end">
+    <button type="submit" flex md-raised-button color="primary" [disabled]="signupForm.invalid||signupForm.pending" >SIGN UP</button>
+    <!-- <div flex></div>
+    <div><a [routerLink]="['/auth/signup']">SIGN UP</a></div> -->
+  </div>
+</form>

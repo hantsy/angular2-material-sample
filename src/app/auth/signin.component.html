@@ -1,0 +1,30 @@
+<form #loginForm="ngForm" (ngSubmit)="login()">
+  <div layout="row">
+    <md-input-container flex>
+      <!-- <span mdPrefix><md-icon>person</md-icon></span> -->
+      <input mdInput #userElement #userControl="ngModel" placeholder="Username" type="text" maxlength="30" name="username" [(ngModel)]="username"
+        required>
+
+      <md-hint align="start" *ngIf="userControl.invalid && !userControl.pristine">
+        <span [hidden]="!userControl.errors?.required" class="tc-red-600">Required</span>
+      </md-hint>
+      <!-- <md-hint align="end">{{userElement.value.length}} / 30</md-hint> -->
+    </md-input-container>
+  </div>
+  <div layout="row">
+    <md-input-container flex>
+      <!-- <span mdPrefix><md-icon>lock</md-icon></span> -->
+      <input mdInput #passElement #passControl="ngModel" placeholder="Password" type="password" name="password" [(ngModel)]="password"
+        required>
+      <md-error align="start" *ngIf="passControl.hasError('required')">
+        Password is <strong>Required</strong>
+      </md-error>
+      <!-- <md-hint align="end">Something hard to guess</md-hint> -->
+    </md-input-container>
+  </div>
+  <div layout="row" layout-align="start end">
+    <button type="submit" flex md-raised-button color="accent" [disabled]="loginForm.invalid||loginForm.pending">SIGN IN</button>
+    <!-- <div flex></div>
+    <div><a [routerLink]="['/auth/signup']">SIGN UP</a></div> -->
+  </div>
+</form>

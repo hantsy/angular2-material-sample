@@ -1,26 +1,3 @@
-<md-toolbar>
-  <form class="form-inline" (ngSubmit)="search()">
-    <md-input-container class="form-group">
-      <input mdInput type="text" name="q" [(ngModel)]="q" />
-    </md-input-container>
-    <button md-button type="submit" class="btn btn-outline-info">{{'search'}}</button>
-    <!--<button type="button" class="btn btn-outline-info" (click)="clearTerm()">{{'clear'}}</button>-->
-  </form>
-  <span class="example-spacer"></span>
-  <a md-button [routerLink]="['/posts', 'new']">NEW POST</a>
-</md-toolbar>
-
-
-<md-card *ngFor="let post of posts ">
-  <md-card-header>
-    <md-card-title><h3>{{post.title}}</h3></md-card-title>
-    <md-card-subtitle>{{post.createdAt|date:'short'}}</md-card-subtitle>
-  </md-card-header>
-  <md-content>
-    <p class="card-text">{{post.content}}</p>
-  </md-content>
-  <md-card-actions>
-    <a md-button [routerLink]="['/posts', 'edit', post.id]">edit</a>
-    <a md-button [routerLink]="['/posts', 'view', post.id]">view</a>
-  </md-card-actions>
-</md-card>
+<p>
+  posts works!
+</p>
