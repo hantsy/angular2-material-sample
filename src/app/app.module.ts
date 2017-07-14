@@ -1,3 +1,5 @@
+import { BaseUrlInterceptor } from './core/base-url-interceptor';
+import { AuthHttpInterceptor } from './core/auth-http-interceptor';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +21,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 
+
 // (optional) Additional Covalent Modules imports
 @NgModule({
   declarations: [AppComponent],
@@ -26,15 +29,26 @@ import { HomeModule } from './home/home.module';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     SharedModule,
 
     // Covalent
-    CovalentHttpModule.forRoot(),
+    CovalentHttpModule.forRoot({
+      interceptors: [
+        {
+          interceptor: BaseUrlInterceptor,
+          paths: ['**'],
+        },
+        {
+          interceptor: AuthHttpInterceptor,
+          paths: ['**'],
+        }
+      ],
+    }),
     CovalentHighlightModule,
     CovalentMarkdownModule,
 
-    // custom module
-    CoreModule,
+    // custom module for views
     HomeModule,
   ],
   providers: [],

@@ -1,3 +1,4 @@
+import { AuthService } from './../core/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TdLoadingService } from '@covalent/core';
@@ -14,7 +15,8 @@ export class SigninComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
-    private _loadingService: TdLoadingService
+    private _loadingService: TdLoadingService,
+    private _auth: AuthService
   ) {
 
   }
@@ -22,10 +24,15 @@ export class SigninComponent implements OnInit, OnDestroy {
   login(): void {
     this._loadingService.register();
     alert('logged in with ' + this.username + ':' + this.password);
-    setTimeout(() => {
-      this._router.navigate(['/']);
-      this._loadingService.resolve();
-    }, 2000);
+    // setTimeout(() => {
+    //   this._router.navigate(['/']);
+    //   this._loadingService.resolve();
+    // }, 2000);
+
+    this._auth.attempAuth('signin', {
+      username: this.username,
+      password: this.password
+    })
   }
 
   ngOnInit() {

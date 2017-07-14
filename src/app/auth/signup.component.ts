@@ -1,3 +1,4 @@
+import { AuthService } from './../core/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TdLoadingService } from '@covalent/core';
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private fb: FormBuilder,
-    private _loadingService: TdLoadingService
+    private _loadingService: TdLoadingService,
+    private _auth: AuthService
   ) {
 
     this.email = new FormControl('', [
@@ -53,10 +55,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   signup(): void {
     this._loadingService.register();
     console.log('singup in with ' + this.username + ':' + this.password + ':' + this.email);
-    setTimeout(() => {
-      this._router.navigate(['/']);
-      this._loadingService.resolve();
-    }, 2000);
+    // setTimeout(() => {
+    //   this._router.navigate(['/']);
+    //   this._loadingService.resolve();
+    // }, 2000);
+
+    this._auth.attempAuth('signup', this.signupForm.value);
   }
 
   ngOnInit() {
