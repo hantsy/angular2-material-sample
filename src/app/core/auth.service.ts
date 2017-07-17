@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject, ReplaySubject } from 'rxjs/Rx';
@@ -6,16 +6,18 @@ import { HttpInterceptorService } from '@covalent/http';
 
 import { JWT } from './jwt';
 import { User } from './user.model';
+import { APP_CONFIG, AppConfig } from '../app.config';
 
 
 @Injectable()
 export class AuthService {
 
-  private currentUser$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  private authenticated$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+  private currentUserState: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  private authenticatedState: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
   private desiredUrl: string = null;
 
   constructor(
+    @Inject(APP_CONFIG) private config: AppConfig,
     private api: HttpInterceptorService,
     private jwt: JWT,
     private router: Router) {
@@ -23,7 +25,7 @@ export class AuthService {
 
   attempAuth(type: string, credentials: any) {
     const path = (type === 'signin') ? '/signin' : '/signup';
-    const url = '/auth' + path;
+    const url = this.config.baseApiUrl + '/auth' + path;
 
     this.api.post(url, credentials)
       .map(res => res.json())
@@ -46,28 +48,28 @@ export class AuthService {
 
     // jwt token is not found in local storage.
     if (this.jwt.get()) {
-      this.api.get('/user').subscribe(
+      this.api.get(this.config.baseApiUrl + '/user').subscribe(
         res => {
-          this.currentUser$.next(res.json());
-          this.authenticated$.next(true);
+          this.currentUserState.next(res.json());
+          this.authenticatedState.next(true);
         },
         err => {
           this.jwt.destroy();
-          this.currentUser$.next(null);
-          this.authenticated$.next(false);
+          this.currentUserState.next(null);
+          this.authenticatedState.next(false);
         }
       );
     } else {
       this.jwt.destroy();
-      this.currentUser$.next(null);
-      this.authenticated$.next(false);
+      this.currentUserState.next(null);
+      this.authenticatedState.next(false);
     }
   }
 
   logout() {
     // reset the initial values
     this.setState(null);
-    //this.desiredUrl = null;
+    // this.desiredUrl = null;
 
     this.jwt.destroy();
     this.desiredUrl = null;
@@ -76,11 +78,11 @@ export class AuthService {
   }
 
   currentUser(): Observable<User> {
-    return this.currentUser$.distinctUntilChanged();
+    return this.currentUserState.distinctUntilChanged();
   }
 
   isAuthenticated(): Observable<boolean> {
-    return this.authenticated$.asObservable();
+    return this.authenticatedState.asObservable();
   }
 
   getDesiredUrl() {
@@ -93,11 +95,11 @@ export class AuthService {
 
   private setState(state: User) {
     if (state) {
-      this.currentUser$.next(state);
-      this.authenticated$.next(true);
+      this.currentUserState.next(state);
+      this.authenticatedState.next(true);
     } else {
-      this.currentUser$.next(null);
-      this.authenticated$.next(false);
+      this.currentUserState.next(null);
+      this.authenticatedState.next(false);
     }
   }
 

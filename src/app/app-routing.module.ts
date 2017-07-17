@@ -7,12 +7,12 @@ const routes: Routes = [
   { path: 'posts', loadChildren: './posts/posts.module#PostsModule' },
   { path: 'users', loadChildren: './users/users.module#UsersModule' },
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' }
- // { path: '**', component:PageNotFoundComponent}
+  // { path: '**', component:PageNotFoundComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [ RouterModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 

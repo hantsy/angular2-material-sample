@@ -4,6 +4,12 @@
       <div flex-gt-xs="30">
         <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push-top-lg']" layout="column" layout-align="start center">
 
+          <div layout="row" layout-align="center start" flex layout-padding>
+            <a [routerLink]="['/']">
+              <img src="/assets/logo.png" alt="home"/>
+            </a>
+          </div>
+
           <nav md-tab-nav-bar flex>
             <a md-tab-link
               *ngFor="let link of navLinks"
@@ -16,12 +22,6 @@
           </nav>
 
           <router-outlet flex></router-outlet>
-
-          <div layout="row" flex layout-padding>
-           <div flex> </div>
-            <a [routerLink]="['/']">HOME</a>
-            <div flex> </div>
-          </div>
         </md-card>
       </div>
     </div>

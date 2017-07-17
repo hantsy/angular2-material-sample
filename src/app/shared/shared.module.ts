@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { FlexLayoutModule, } from '@angular/flex-layout';
+import { TranslateModule} from '@ngx-translate/core';
 import {
   CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
   CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
@@ -16,6 +17,10 @@ import {
   MdTabsModule, MdSelectModule,
 } from '@angular/material';
 import { NgxChartsModule, } from '@swimlane/ngx-charts';
+
+import { ShowAuthedDirective } from './show-authed.directive';
+import { Nl2brPipe } from './nl2br.pipe';
+import { EmailValidatorDirective } from './email-validator.directive';
 
 const FLEX_LAYOUT_MODULES: any[] = [
   FlexLayoutModule,
@@ -47,6 +52,7 @@ const CHART_MODULES: any[] = [
 @NgModule({
   imports: [
     CommonModule,
+    TranslateModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,
@@ -54,9 +60,12 @@ const CHART_MODULES: any[] = [
     FLEX_LAYOUT_MODULES,
   ],
   declarations: [
-
+    ShowAuthedDirective,
+    Nl2brPipe,
+    EmailValidatorDirective
   ],
   exports: [
+    TranslateModule,
     ANGULAR_MODULES,
     MATERIAL_MODULES,
     COVALENT_MODULES,

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { APP_CONFIG, AppConfig } from '../app.config';
 
-const JWT_KEY: string = 'id_token';
+const JWT_KEY = 'id_token';
 
 @Injectable()
 export class JWT {
