@@ -1,54 +1,62 @@
-import { Component, OnInit } from '@angular/core';
 
-class Skill {
-  name: string;
-  description: string;
-  url: string;
-}
+import { Component, AfterViewInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MdIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  private skills: Skill[];
+export class HomeComponent implements AfterViewInit {
+  routes: Object[] = [
+    {
+      title: 'Home',
+      route: '/',
+      icon: 'home',
+    }, {
+      title: 'Technology',
+      route: '/',
+      icon: 'laptop_mac',
+    }, {
+      title: 'Locations',
+      route: '/',
+      icon: 'language',
+    }, {
+      title: 'Job Openings',
+      route: '/',
+      icon: 'assignment',
+    }, {
+      title: 'Leadership',
+      route: '/',
+      icon: 'people',
+    },
+  ];
 
-  constructor() { }
+  constructor(
+    private _iconRegistry: MdIconRegistry,
+    private _domSanitizer: DomSanitizer
+  ) {
+    this._iconRegistry
+      .addSvgIconInNamespace('assets', 'teradata-ux',
+      this._domSanitizer
+        .bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/teradata-ux.svg')
+      );
 
-  ngOnInit() {
-    this.skills = [
-      {
-        name: 'Angular 2',
-        description: 'Web component based MVVM framework.',
-        url: 'http://angular.io'
-      },
-      {
-        name: 'Typescript',
-        description: 'Typescript is a typed superset of JavaScript that compiles to plain JavaScript.',
-        url: 'https://www.typescriptlang.org/'
-      },
-      {
-        name: 'RxJS',
-        description: 'Reactive programming for JavaScript',
-        url: 'http://reactivex.io/rxjs/'
-      },
-      {
-        name: 'Angular CLI',
-        description: 'Official command line tooling for Angular 2',
-        url: 'https://github.com/angular/angular-cli'
-      },
-      {
-        name: 'Webpack',
-        description: 'The only build pack you should have.',
-        url: 'https://webpack.github.io/'
-      },
-      {
-        name: 'Bootstrap',
-        description: 'The most popular frontend CSS framework.',
-        url: 'https://getbootstrap.org/'
-      },
-    ];
+    this._iconRegistry
+      .addSvgIconInNamespace('assets', 'covalent',
+      this._domSanitizer
+        .bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent.svg')
+      );
+
+    this._iconRegistry
+      .addSvgIconInNamespace('assets', 'covalent-mark',
+      this._domSanitizer
+        .bypassSecurityTrustResourceUrl('https://raw.githubusercontent.com/Teradata/covalent-quickstart/develop/src/assets/icons/covalent-mark.svg')
+      );
+
   }
+  ngAfterViewInit(): void {
 
+  }
 }

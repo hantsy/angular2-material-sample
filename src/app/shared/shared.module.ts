@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { FlexLayoutModule, } from '@angular/flex-layout';
-import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import {
   CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
   CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
@@ -14,7 +14,7 @@ import {
   MdListModule, MdMenuModule, MdTooltipModule,
   MdSlideToggleModule, MdInputModule, MdCheckboxModule,
   MdToolbarModule, MdSnackBarModule, MdSidenavModule,
-  MdTabsModule, MdSelectModule,
+  MdTabsModule, MdSelectModule, MdGridListModule
 } from '@angular/material';
 import { NgxChartsModule, } from '@swimlane/ngx-charts';
 
@@ -35,7 +35,7 @@ const MATERIAL_MODULES: any[] = [
   MdListModule, MdMenuModule, MdTooltipModule,
   MdSlideToggleModule, MdInputModule, MdCheckboxModule,
   MdToolbarModule, MdSnackBarModule, MdSidenavModule,
-  MdTabsModule, MdSelectModule,
+  MdTabsModule, MdSelectModule, MdGridListModule
 ];
 
 const COVALENT_MODULES: any[] = [
@@ -71,6 +71,9 @@ const CHART_MODULES: any[] = [
     COVALENT_MODULES,
     CHART_MODULES,
     FLEX_LAYOUT_MODULES,
+    ShowAuthedDirective,
+    Nl2brPipe,
+    EmailValidatorDirective,
   ]
 })
 export class SharedModule { }

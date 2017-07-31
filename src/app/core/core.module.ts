@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { JWT } from './jwt';
 import { AuthGuard } from './auth.guard';
+import { ApiService } from './api.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { AuthGuard } from './auth.guard';
   ],
   providers: [
     AuthHttpInterceptor,
+    ApiService,
     AuthService,
     JWT,
     AuthGuard

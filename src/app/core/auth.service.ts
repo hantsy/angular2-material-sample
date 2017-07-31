@@ -2,12 +2,44 @@ import { Injectable, Inject } from '@angular/core';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject, ReplaySubject } from 'rxjs/Rx';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
 import { HttpInterceptorService } from '@covalent/http';
 
 import { JWT } from './jwt';
 import { User } from './user.model';
-import { APP_CONFIG, AppConfig } from '../app.config';
+// import { APP_CONFIG, AppConfig } from '../app.config';
+import { ApiService } from './api.service';
 
+
+// export interface State {
+//   items: Items[]
+// }
+
+// const defaultState = {
+//   items: []
+// };
+
+// const DEFAUTL_STORE = new BehaviorSubject<State>(defaultState);
+
+// @Injectable()
+// export class Store {
+//   private _store = DEFAUTL_STORE;
+//   changes = _store.distinctUntilChanged()
+//     .do(() => console.log('changes'));
+
+//   setState(state: State) {
+//     this._store.next(state);
+//   }
+
+//   getState(): State {
+//     return this._store.value;
+//   }
+
+//   purge() {
+//     this._store.next(defaultState);
+//   }
+// }
 
 @Injectable()
 export class AuthService {
@@ -17,15 +49,15 @@ export class AuthService {
   private desiredUrl: string = null;
 
   constructor(
-    @Inject(APP_CONFIG) private config: AppConfig,
-    private api: HttpInterceptorService,
+    // @Inject(APP_CONFIG) private config: AppConfig,
+    private api: ApiService,
     private jwt: JWT,
     private router: Router) {
   }
 
   attempAuth(type: string, credentials: any) {
     const path = (type === 'signin') ? '/signin' : '/signup';
-    const url = this.config.baseApiUrl + '/auth' + path;
+    const url = '/auth' + path;
 
     this.api.post(url, credentials)
       .map(res => res.json())
@@ -48,7 +80,7 @@ export class AuthService {
 
     // jwt token is not found in local storage.
     if (this.jwt.get()) {
-      this.api.get(this.config.baseApiUrl + '/user').subscribe(
+      this.api.get('/user').subscribe(
         res => {
           this.currentUserState.next(res.json());
           this.authenticatedState.next(true);

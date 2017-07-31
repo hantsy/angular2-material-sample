@@ -1,4 +1,3 @@
-import { BaseUrlInterceptor } from './core/base-url-interceptor';
 import { AuthHttpInterceptor } from './core/auth-http-interceptor';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -53,10 +52,10 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
     // Covalent
     CovalentHttpModule.forRoot({
       interceptors: [
-        {
-          interceptor: BaseUrlInterceptor,
-          paths: ['**'],
-        },
+        // {
+        //   interceptor: BaseUrlInterceptor,
+        //   paths: ['**'],
+        // },
         {
           interceptor: AuthHttpInterceptor,
           paths: ['**'],
