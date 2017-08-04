@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   signup(): void {
-    this._loadingService.register();
+    // this._loadingService.register();
     console.log('singup in with ' + this.username + ':' + this.password + ':' + this.email);
     // setTimeout(() => {
     //   this._router.navigate(['/']);

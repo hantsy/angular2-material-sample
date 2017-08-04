@@ -2,6 +2,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MdIconRegistry } from '@angular/material';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +36,8 @@ export class HomeComponent implements AfterViewInit {
 
   constructor(
     private _iconRegistry: MdIconRegistry,
-    private _domSanitizer: DomSanitizer
+    private _domSanitizer: DomSanitizer,
+    private _auth: AuthService
   ) {
     this._iconRegistry
       .addSvgIconInNamespace('assets', 'teradata-ux',
@@ -58,5 +60,9 @@ export class HomeComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
 
+  }
+
+  signout() {
+    this._auth.signout();
   }
 }

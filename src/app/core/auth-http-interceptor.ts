@@ -22,7 +22,7 @@ export class AuthHttpInterceptor implements IHttpInterceptor {
     const token = this._jwt.get();
     if (token) {
       console.log('restoring token from local storage...::' + token);
-      requestOptions.headers.append(XAUTH_TOKEN_KEY, token);
+      requestOptions.headers.set(XAUTH_TOKEN_KEY, token);
     }
     return requestOptions;
   }
@@ -36,7 +36,7 @@ export class AuthHttpInterceptor implements IHttpInterceptor {
     console.log('AuthHttpInterceptor::onResponse::' + response);
     const token = response.headers.get(XAUTH_TOKEN_KEY);
 
-    if (token !== undefined && token.length > 0) {
+    if (token) {
       console.log('saving token to local storage...::' + token);
       this._jwt.save(token);
     }

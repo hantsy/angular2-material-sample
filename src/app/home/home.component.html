@@ -4,41 +4,42 @@
       <span hide-xs class="tc-blue-500 md-subhead">Landing Page Template</span> -->
     <span flex></span>
 
-      <button [routerLink]="['/auth/signin']" md-button color="primary">
+    <button [appShowAuthed]="false" [routerLink]="['/auth/signin']" md-button color="primary">
         {{'SIGNIN'| translate}}
       </button>
-    <!-- <button md-icon-button [mdMenuTriggerFor]="notificationsMenu">
-        <td-notification-count color="accent" [notifications]="12">
+    <button [appShowAuthed]="true" md-icon-button [mdMenuTriggerFor]="notificationsMenu">
+        <!-- <td-notification-count color="accent" [notifications]="12">
           <md-icon>notifications</md-icon>
-        </td-notification-count>
+        </td-notification-count> -->
+        <md-icon>person</md-icon>
       </button>
-       <md-menu #notificationsMenu="mdMenu">
-        <td-menu>
-          <div td-menu-header class="md-subhead">Job Openings</div>
-          <md-nav-list dense>
-            <a md-list-item>
-              <md-icon md-list-avatar>fiber_new</md-icon>
-              <h4 md-line><span class="text-wrap">Sr. Frontend Engineer</span></h4>
-              <p md-line>UX team</p>
-            </a>
-            <md-divider></md-divider>
-            <a md-list-item>
-              <md-icon md-list-avatar>fiber_new</md-icon>
-              <h4 md-line><span class="text-wrap">Sr. Data Scientist</span></h4>
-              <p md-line>Data science team</p>
-            </a>
-            <md-divider></md-divider>
-            <a md-list-item>
-              <md-icon md-list-avatar>fiber_new</md-icon>
-              <h4 md-line><span class="text-wrap">Sr. DevOps Engineer</span></h4>
-              <p md-line>DevOps team</p>
-            </a>
-          </md-nav-list>
-          <a md-button color="accent" td-menu-footer>
-            View Jobs
+    <md-menu [appShowAuthed]="true" #notificationsMenu="mdMenu">
+      <td-menu>
+        <!-- <div td-menu-header class="md-subhead">Job Openings</div>
+        <md-nav-list dense>
+          <a md-list-item>
+            <md-icon md-list-avatar>fiber_new</md-icon>
+            <h4 md-line><span class="text-wrap">Sr. Frontend Engineer</span></h4>
+            <p md-line>UX team</p>
           </a>
-        </td-menu>
-      </md-menu> -->
+          <md-divider></md-divider>
+          <a md-list-item>
+            <md-icon md-list-avatar>fiber_new</md-icon>
+            <h4 md-line><span class="text-wrap">Sr. Data Scientist</span></h4>
+            <p md-line>Data science team</p>
+          </a>
+          <md-divider></md-divider>
+          <a md-list-item>
+            <md-icon md-list-avatar>fiber_new</md-icon>
+            <h4 md-line><span class="text-wrap">Sr. DevOps Engineer</span></h4>
+            <p md-line>DevOps team</p>
+          </a>
+        </md-nav-list> -->
+        <a md-button color="warning" td-menu-footer (click)="signout()">
+            {{'SIGNOUT'|translate}}
+          </a>
+      </td-menu>
+    </md-menu>
   </div>
   <!-- <md-toolbar class="pad-none">
       <nav  md-stretch-tabs md-tab-nav-bar class="pull-bottom-xl pull-top-md text-upper" flex>
@@ -65,7 +66,7 @@
       </nav>
     </md-toolbar> -->
   <!-- router outlet goes here -->
- <section class="bgc-blue-grey-50">
+  <section class="bgc-blue-grey-50">
     <div layout-gt-xs="row">
       <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
         <div class="push-top-xl" hide-xs></div>

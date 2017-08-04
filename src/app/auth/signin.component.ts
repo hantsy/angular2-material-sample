@@ -22,8 +22,8 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
 
   login(): void {
-    this._loadingService.register();
-    alert('logged in with ' + this.username + ':' + this.password);
+    // this._loadingService.register();
+    console.log('logged in with ' + this.username + ':' + this.password);
     // setTimeout(() => {
     //   this._router.navigate(['/']);
     //   this._loadingService.resolve();

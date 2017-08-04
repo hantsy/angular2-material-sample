@@ -1,0 +1,114 @@
+<td-layout-nav color="primary">
+  <div td-toolbar-content layout="row" layout-align="start center" flex>
+    <!-- <span hide-gt-xs class="tc-blue-500 md-subhead">Landing</span>
+      <span hide-xs class="tc-blue-500 md-subhead">Landing Page Template</span> -->
+    <span class="tc-white md-subhead text-upper">Posts</span>
+    <!-- <span flex></span> -->
+    <td-search-box flex backIcon="arrow_back" placeholder="Search posts by keywords" [showUnderline]="true" [debounce]="500"
+      [alwaysVisible]="true" (searchDebounce)="searchByTerm($event)" (search)="updateTerm($event)" (clear)="clearTerm($event)">
+    </td-search-box>
+    <button md-icon-button [mdMenuTriggerFor]="viewModeMenu">
+        <!-- <td-notification-count color="accent" [notifications]="12">
+          <md-icon>notifications</md-icon>
+        </td-notification-count> -->
+        <md-icon>{{viewModeIcon}}</md-icon>
+    </button>
+    <md-menu class="tc-white" #viewModeMenu="mdMenu">
+      <td-menu>
+        <!-- <div td-menu-header class="md-subhead">Job Openings</div> -->
+        <md-nav-list dense>
+          <a md-list-item (click)="changeViewMode('list')">
+            <md-icon md-list-icon>list</md-icon>
+            <h4 md-line><span class="text-wrap text-upper">List</span></h4>
+          </a>
+          <md-divider></md-divider>
+          <a md-list-item (click)="changeViewMode('grid_on')">
+            <md-icon md-list-icon>grid_on</md-icon>
+            <h4 md-line><span class="text-wrap text-upper">Grid</span></h4>
+          </a>
+        </md-nav-list>
+      </td-menu>
+    </md-menu>
+  </div>
+
+
+
+  <md-card flex>
+    <md-card-header>
+      <!-- <div md-card-avatar class="example-header-image"></div> -->
+      <md-card-title class="text-upper">All Posts</md-card-title>
+      <md-card-subtitle></md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <md-nav-list *ngIf="viewModeIcon==='list'">
+        <h2 md-subheader class="text-upper tc-blue-grey-100" *ngIf="q">Search results</h2>
+        <md-list-item flex *ngFor="let post of posts ">
+          <img md-list-avatar src="" />
+          <h3 md-line class="tc-blue-grey-500">{{post.title}}</h3>
+          <p md-line class="tc-blue-grey-300">{{post.author.username}} &bull; {{post.createdDate|date:'short'}}</p>
+
+          <!-- <div>
+          <a md-icon-button [routerLink]="['/posts', 'edit', post.id]">
+            <md-icon>edit</md-icon>
+          </a>
+          <a md-icon-button [routerLink]="['/posts', 'view', post.id]">view</a>
+        </div> -->
+
+        </md-list-item>
+
+        <!-- <md-list-item>
+        <p md-line class="tc-blue-grey-300">Press</p>
+      </md-list-item> -->
+      </md-nav-list>
+
+
+      <md-grid-list flex *ngIf="viewModeIcon==='grid_on'" gutterSize="2rem" cols="2" rowHeight="2:1">
+        <md-grid-tile *ngFor="let post of posts">
+          <p class="md-display-2" style="height:auto;width:auto;">{{post.title}}
+        </md-grid-tile>
+      </md-grid-list>
+    </md-card-content>
+    <md-card-footer>
+    </md-card-footer>
+  </md-card>
+
+</td-layout-nav>
+<a md-fab color="primary" mdTooltip="New Post" mdTooltipPosition="above" class="mat-fab-position-bottom-right fixed" [routerLink]="['/posts/new']">
+  <md-icon>add</md-icon>
+</a>
+
+
+<!--
+<div class="card my-2">
+  <div class="card-block bg-faded">
+    <div class="row">
+      <div class="col-md-9">
+        <form class="form-inline">
+          <div class="form-group" (ngSubmit)="search()">
+            <input type="text" name="q" class="form-control" [(ngModel)]="q" />
+          </div>
+          <button type="submit" class="btn btn-outline-info">{{'search'}}</button>
+
+      </div>
+      <div class="col-md-3">
+        <span class="float-md-right">
+          <a class="btn btn-success" [routerLink]="['/posts', 'new']">new-post</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-md-6 my-1" *ngFor="let post of posts ">
+    <div class="card card-block">
+      <h4 class="card-title">{{post.title}}</h4>
+      <h6 class="card-subtitle text-muted">{{post.createdAt|date:'short'}}</h6>
+      <p class="card-text">{{post.content}}</p>
+      <div class="text-md-right">
+        <a [routerLink]="['/posts', 'edit', post.id]">edit</a>
+        <a [routerLink]="['/posts', 'view', post.id]">view</a>
+      </div>
+    </div>
+  </div>
+</div> -->

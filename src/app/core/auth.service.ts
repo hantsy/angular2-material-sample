@@ -60,7 +60,7 @@ export class AuthService {
     const url = '/auth' + path;
 
     this.api.post(url, credentials)
-      .map(res => res.json())
+      // .map(res => res.json())
       .subscribe(res => {
 
         this.setState(res);
@@ -78,11 +78,10 @@ export class AuthService {
 
   verifyAuth(): void {
 
-    // jwt token is not found in local storage.
     if (this.jwt.get()) {
       this.api.get('/user').subscribe(
         res => {
-          this.currentUserState.next(res.json());
+          this.currentUserState.next(res);
           this.authenticatedState.next(true);
         },
         err => {
@@ -92,13 +91,14 @@ export class AuthService {
         }
       );
     } else {
+      // token is not found in local storage.
       this.jwt.destroy();
       this.currentUserState.next(null);
       this.authenticatedState.next(false);
     }
   }
 
-  logout() {
+  signout() {
     // reset the initial values
     this.setState(null);
     // this.desiredUrl = null;
