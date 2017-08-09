@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <div class="card-block">
     <app-comment-list [comments]="comments"></app-comment-list>
     <div [appShowAuthed]="true">
@@ -9,4 +9,32 @@
       <div><a class="btn btn-success btn-lg" [routerLink]="['/signin']">SIGN IN</a></div>
     </div>
   </div>
-</div>
+</div> -->
+<section class="bgc-blue-grey-50" style="width:100%;height:100%;" layout="column">
+  <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+    <md-card flex>
+      <md-card-header>
+        <!-- <div md-card-avatar class="example-header-image"></div> -->
+        <md-card-title class="text-upper">{{'comments'}}</md-card-title>
+        <md-card-subtitle> <small></small> </md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <app-comment-list [comments]="comments"></app-comment-list>
+      </md-card-content>
+      <md-card-footer>
+      </md-card-footer>
+    </md-card>
+  </div>
+
+  <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+    <md-card flex>
+      <div [appShowAuthed]="true" md-content>
+        <app-comment-form [post]="post" (onSaved)="onCommentSaved($event)"></app-comment-form>
+      </div>
+      <div [appShowAuthed]="false" class="pad text-center">
+        <p>Please signin and add your comments.</p>
+        <div><a md-raised-button color="primary" class="mat-button-lg" [routerLink]="['/auth','signin']">SIGN IN</a></div>
+      </div>
+    </md-card>
+  </div>
+</section>

@@ -7,17 +7,13 @@ import { PostsHomeComponent } from './home/home.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
-import { PostsComponent } from './posts.component';
 
 const routes: Routes = [
-  {
-    path: '', component: PostsComponent, children: [
-      { path: '', component: PostsHomeComponent },
-      { path: 'new', component: NewPostComponent, canActivate: [AuthGuard] },
-      { path: 'edit/:id', component: EditPostComponent, canActivate: [AuthGuard] },
-      { path: 'view/:id', component: PostDetailsComponent }
-    ]
-  }
+  { path: '', redirectTo: 'home' },
+  { path: 'home', component: PostsHomeComponent },
+  { path: 'new', component: NewPostComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:slug', component: EditPostComponent, canActivate: [AuthGuard] },
+  { path: 'view/:slug', component: PostDetailsComponent }
 ];
 
 @NgModule({

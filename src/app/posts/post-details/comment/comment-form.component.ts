@@ -31,9 +31,9 @@ export class CommentFormComponent implements OnInit {
   saveCommentForm() {
     console.log('submitting comment form @' + this.commentForm.value);
 
-    this.postService.saveComment(this.post.id, this.commentForm.value)
+    this.postService.saveComment(this.post.slug, this.commentForm.value)
       .subscribe((data) => {
-        this.commentForm.controls['content'].setValue('');
+        this.commentForm.controls['content'].setValue(null);
         this.commentForm.markAsPristine();
         this.commentForm.markAsUntouched();
         this.onSaved.emit(true);

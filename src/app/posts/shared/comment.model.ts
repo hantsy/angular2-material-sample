@@ -1,6 +1,7 @@
+import { Username } from './username.model';
 export interface Comment {
   id?: number;
   content: string;
-  createdBy?: string;
-  createdAt?: string;
+  author?: Username;
+  createdDate?: string;
 }

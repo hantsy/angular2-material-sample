@@ -21,7 +21,7 @@ export class CommentPanelComponent implements OnInit {
   onCommentSaved(event) {
     console.log(event);
     if (event) {
-      this.postService.getCommentsOfPost(this.post.id).subscribe((data) => this.comments = data.json());
+      this.postService.getCommentsOfPost(this.post.slug).subscribe((data) => this.comments = data.content);
     }
   }
 }

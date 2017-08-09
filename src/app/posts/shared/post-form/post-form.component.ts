@@ -22,7 +22,7 @@ export class PostFormComponent implements OnInit, OnDestroy {
 
     if (this.post.id) {
       this.postService
-        .updatePost(this.post.id, _body)
+        .updatePost(this.post.slug, _body)
         .subscribe((data) => {
           this.onSaved.emit(true);
         },

@@ -1,4 +1,4 @@
-<div class="media">
+<!-- <div class="media">
   <div class="media-left media-top">
     <a href="#">
       <img class="media-object" src="../" alt="...">
@@ -8,5 +8,10 @@
     <h6 class="media-heading">{{comment.createdBy}} &bull; {{comment.createdAt|date:'short'}}</h6>
     <p [innerHTML]="comment.content|nl2br"></p>
   </div>
-</div>
+</div> -->
 
+<md-list-item flex>
+  <img md-list-avatar src="" />
+  <h3 md-line class="tc-blue-grey-500">{{comment.author.username}} &bull; {{comment.createdDate|date:'short'}} </h3>
+  <p md-line class="tc-blue-grey-300">{{comment.content}}</p>
+</md-list-item>

@@ -15,7 +15,6 @@ import { CommentFormComponent } from './post-details/comment/comment-form.compon
 import { CommentPanelComponent } from './post-details/comment/comment-panel.component';
 import { PostFormComponent } from './shared/post-form/post-form.component';
 import { PostService } from './shared/post.service';
-import { PostsComponent } from './posts.component';
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { PostsComponent } from './posts.component';
     PostsRoutingModule
   ],
   declarations: [
-    PostsComponent,
     PostsHomeComponent,
     NewPostComponent,
     EditPostComponent,
@@ -36,7 +34,6 @@ import { PostsComponent } from './posts.component';
     CommentPanelComponent
   ],
   exports: [
-    PostsComponent,
     PostsHomeComponent,
     NewPostComponent,
     EditPostComponent,

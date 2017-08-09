@@ -1,4 +1,33 @@
-<div class="card">
+<section  class="bgc-blue-A700 tc-white">
+  <div layout-gt-xs="row">
+    <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+      <div class="push-top-xl" hide-xs></div>
+      <div class="text-center" tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
+        <h1 class="md-display-2 push-top-xs push-bottom-sm text-upper">{{post.title}}</h1>
+        <h2 class="md-headline tc-grey-100 push-top-xs push-bottom-sm">{{post?.author?.username}}</h2>
+        <p class="md-subhead tc-grey-400">{{post.createdDate|date:'short'}}</p>
+        <!-- <button [routerLink]="['/posts']" md-raised-button color="primary" class="push-bottom mat-button-lg text-upper">START HERE</button> -->
+      </div>
+      <div class="push-bottom-xl" hide-xs></div>
+    </div>
+  </div>
+</section>
+
+<section class="bgc-blue-grey-50" style="width:100%;height:100%;" layout="column">
+  <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+    <md-card flex>
+      <md-card-content>
+        <p>
+          {{post.content}}
+        </p>
+      </md-card-content>
+      <md-card-footer>
+      </md-card-footer>
+    </md-card>
+  </div>
+</section>
+
+<!-- <div class="card">
   <div class="card-header">
     <h1 class="card-title text-xs-center text-uppercase text-justify">
       {{post.title}}
@@ -13,4 +42,4 @@
   <div class="card-footer">
     back to <a [routerLink]="['','posts']">{{'post-list'}}</a>
   </div>
-</div>
+</div> -->

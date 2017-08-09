@@ -22,7 +22,7 @@ export class PostService {
     return this._http.get(`${this.path}`, term);
   }
 
-  getPost(id: number): Observable<any> {
+  getPost(id: string): Observable<any> {
     return this._http.get(`${this.path}/${id}`);
   }
 
@@ -31,20 +31,20 @@ export class PostService {
     return this._http.post(`${this.path}`, data);
   }
 
-  updatePost(id: number, data: Post) {
+  updatePost(id: string, data: Post) {
     console.log('updating post:' + data);
     return this._http.put(`${this.path}/${id}`, data);
   }
 
-  deletePost(id: number) {
+  deletePost(id: string) {
     return this._http.delete(`${this.path}/${id}`);
   }
 
-  saveComment(id: number, data: Comment) {
+  saveComment(id: string, data: Comment) {
     return this._http.post(`${this.path}/${id}/comments`, data);
   }
 
-  getCommentsOfPost(id: number) {
+  getCommentsOfPost(id: string) {
     return this._http.get(`${this.path}/${id}/comments`);
   }
 

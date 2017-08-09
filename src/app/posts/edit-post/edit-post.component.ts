@@ -12,7 +12,7 @@ import { PostService } from '../shared/post.service';
 export class EditPostComponent implements OnInit, OnDestroy {
   post: Post = { title: '', content: '' };
   sub: Subscription;
-  id: number;
+  slug: string;
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
 
@@ -26,8 +26,8 @@ export class EditPostComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params
       .flatMap(params => {
-        this.id = +params['id'];
-        return this.postService.getPost(this.id);
+        this.slug = params['slug'];
+        return this.postService.getPost(this.slug);
       })
       .subscribe((res: Post) => this.post = res);
   }

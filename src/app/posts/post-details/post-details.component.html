@@ -1,2 +1,17 @@
-<app-post-details-panel [post]="post"></app-post-details-panel>
-<app-comment-panel [post]="post" [comments]="comments"></app-comment-panel>
+<td-layout-nav color="primary">
+  <div td-toolbar-content layout="row" layout-align="start center" flex>
+    <!-- <span hide-gt-xs class="tc-blue-500 md-subhead">Landing</span>
+      <span hide-xs class="tc-blue-500 md-subhead">Landing Page Template</span> -->
+    <!-- <span class="tc-white md-subhead text-upper">Posts</span> -->
+    <button md-icon-button class="tc-white" [routerLink]="['/posts']">
+      <md-icon>clear</md-icon>
+    </button>
+    <span flex></span>
+    <span class="tc-white md-subhead text-upper">Post Details</span>
+    <span flex></span>
+  </div>
+
+
+  <app-post-details-panel [post]="post"></app-post-details-panel>
+  <app-comment-panel [post]="post" [comments]="comments"></app-comment-panel>
+</td-layout-nav>
