@@ -25,15 +25,18 @@ export class PostsHomeComponent implements OnInit, OnDestroy {
   }
 
   searchByTerm($event) {
+    console.log('search by term:' + $event);
     this.updateTerm($event);
     this.search();
   }
 
   updateTerm($event) {
+    console.log('update term:' + $event);
     this.q = $event;
   }
 
-  clearTerm() {
+  clearTerm($event) {
+    console.log('clear term:' + $event);
     this.q = null;
   }
 
