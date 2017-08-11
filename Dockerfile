@@ -6,6 +6,6 @@ FROM nginx
 
 # Copy custom configuration file from the current directory
 COPY nginx.conf /etc/nginx/nginx.conf  
-COPY dist /usr/share/nginx/www  
+COPY dist /usr/share/nginx/html  
 EXPOSE 3000
 
