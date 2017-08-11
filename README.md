@@ -18,5 +18,14 @@ And after it is started, open http://localhost:4200.
 ## Build for production
 
 ```
-npm build
+ng build --env=prod 
 ```
+
+or 
+
+```
+ng build --prod --aot=false
+```
+
+**NOTE**: `ng build --prod` will fail, it requires aot facilities when building the project. There are serveral issues reported about this in angular cli project.
+ 
